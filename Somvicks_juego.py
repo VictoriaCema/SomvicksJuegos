@@ -11,6 +11,8 @@ lista_preguntas = [["Siempre que una relación es 'asimétrica' también es 'no 
 mostrar_menu_inicial()
 
 opcion = input("Opcion: ")
+while not (opcion == "1" or opcion == "2"):
+    opcion = input("Caracter incorrecto, ingrese 1 o 2: ")
     
 print(" ")
 a = 1
@@ -25,7 +27,9 @@ while opcion != "2":
     indice = random.randint(0, preguntas)
     pregunta = lista_preguntas[indice][0]
     print(pregunta)
-    respuesta_usuario = input("\nRespuesta (si/no): ")
+    respuesta_usuario = input("\nRespuesta (si/no): ").lower()
+    while not (respuesta_usuario == "si" or respuesta_usuario == "no"):
+        respuesta_usuario = input("Caracter incorrecto, ingrese (si/no): ").lower()
     respuesta_correcta = evaluar_pregunta(lista_preguntas, pregunta)
     if respuesta_correcta == respuesta_usuario:
         agregar_puntos(jugador, 15) 
@@ -59,6 +63,9 @@ while opcion != "2":
         2 - Salir
         
         Opcion: ''')
+    while not (opcion == "1" or opcion == "2"):
+        opcion = input("Caracter incorrecto, ingrese 1 o 2: ")
+        
     print(" ")
 
 terminar_juego()
