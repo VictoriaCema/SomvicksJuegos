@@ -30,7 +30,7 @@ while opcion != "2":
     respuesta_usuario = input("\nRespuesta (si/no): ").lower()
     while not (respuesta_usuario == "si" or respuesta_usuario == "no"):
         respuesta_usuario = input("Caracter incorrecto, ingrese (si/no): ").lower()
-    respuesta_correcta = evaluar_pregunta(lista_preguntas, pregunta)
+    respuesta_correcta = evaluar_respuesta(lista_preguntas, pregunta)
     if respuesta_correcta == respuesta_usuario:
         agregar_puntos(jugador, 15) 
         print(f'''

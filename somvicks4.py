@@ -1,6 +1,6 @@
 import random 
 from funciones import *
-from tester import *
+
 '''
 #ideas:
     que el jugador vaya entrando a aulas, donde se encuente con dos opciones, un machete o contestar una pregunta. 
@@ -91,7 +91,7 @@ while True:
             contador = 0
             if contador == 0: 
                 materia = "programacion"
-                rendir_materia(jugador, lista_programacion, mensaje_programacion, materia)
+                #rendir_materia(jugador, lista_programacion, mensaje_programacion, materia)
                 contador += 1
             else:
                 print("Ya rendiste Programacion, elige otra aula.")
@@ -100,7 +100,7 @@ while True:
             contador = 0
             if contador == 0: 
                 materia = "matematica"
-                rendir_materia(jugador, lista_matematica, mensaje_matematica, materia)
+                #rendir_materia(jugador, lista_matematica, mensaje_matematica, materia)
                 contador += 1
             else:
                 print("Ya rendiste Matematica, elige otra aula.")
@@ -109,7 +109,7 @@ while True:
             contador = 0
             if contador == 0:
                 materia = "Organizacion Empresarial"
-                rendir_materia(jugador, lista_org_emp, mensaje_org_emp, materia)
+                #rendir_materia(jugador, lista_org_emp, mensaje_org_emp, materia)
                 contador += 1
             else:
                 print("Ya rendiste Organizacion Empresarial, elige otra aula.")
@@ -118,7 +118,7 @@ while True:
             contador = 0
             if contador == 0: 
                 materia = "ArSo"
-                rendir_materia(jugador, lista_arso, mensaje_arso, materia)
+                #rendir_materia(jugador, lista_arso, mensaje_arso, materia)
                 contador += 1
             else:
                 print("Ya rendiste ArSo, elige otra aula.")
@@ -141,7 +141,7 @@ while True:
             if contador == 0:
                 ingresar_banio(jugador)
         case "8":
-            pregunta_final()
+            pass
         
         case _:
             print("Opcion invalida, ingrese nuevamente")
