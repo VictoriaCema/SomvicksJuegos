@@ -5,8 +5,7 @@ jugador = {
     "porcentaje_somvicks": 0,
     "vidas" : 3
 }
-
-lista_preguntas = ["Siempre que una relación es 'asimétrica' también es 'no simétrica'.", "Super().__init__ no son los atributos heredados de la clase padre.", "¿Las listas son mutables?", "¿Para aprobar Programación I es requisito conocer StarWars?", "Para crear una carpeta desde la terminal se usa el siguiente comando: mkdir <nombreCapeta>", "Los elementos de un set tienen un orden determinado", "La amortización SOLO va en el presupuesto financiero: "]
+lista_preguntas = [["Siempre que una relación es 'asimétrica' también es 'no simétrica'.", "si"], ["Super().__init__ no son los atributos heredados de la clase padre.", "no"], ["¿Las listas son mutables?", "si"], ["¿Para aprobar Programación I es requisito conocer StarWars?", "si"], ["Para crear una carpeta desde la terminal se usa el siguiente comando: mkdir <nombreCapeta>", "si"], ["Los elementos de un set tienen un orden determinado", "no"], ["La amortización SOLO va en el presupuesto financiero: ", "no"]]
 
 
 mostrar_menu_inicial()
@@ -21,13 +20,15 @@ while opcion != "2":
         a = 2
         nombre = input("Empecemos por tu nombre!: ")
         jugador["nombre"] = nombre
-        print(f"Hola {jugador["nombre"]}, esta es tu primera pregunta: \n")
-    pregunta = random.choice(lista_preguntas)
+        print(f"\nHola {jugador["nombre"]}, esta es tu primera pregunta: \n")
+    preguntas = len(lista_preguntas)
+    indice = random.randint(0, preguntas)
+    pregunta = lista_preguntas[indice][0]
     print(pregunta)
     respuesta_usuario = input("\nRespuesta (si/no): ")
-    respuesta_correcta = evaluar_pregunta(pregunta)
+    respuesta_correcta = evaluar_pregunta(lista_preguntas, pregunta)
     if respuesta_correcta == respuesta_usuario:
-        agregar_puntos(jugador, 50) 
+        agregar_puntos(jugador, 15) 
         print(f'''
             Genial, ganaste 15 puntos.
             ¡Nuevo porcentaje Somvicks!: {jugador['porcentaje_somvicks']}%

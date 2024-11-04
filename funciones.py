@@ -32,19 +32,27 @@ def chequear_vida(jugador:dict) -> bool:
         vida = False
     return vida
     
-def evaluar_pregunta(pregunta):
-    if pregunta == "Siempre que una relación es 'asimétrica' también es 'no simétrica'.":
-        respuesta = "si"
-    elif pregunta == "Super().__init__ no son los atributos heredados de la clase padre.":
-        respuesta = "no"
-    elif pregunta == "¿Las listas son mutables?":
-        respuesta = "si"
-    elif pregunta == "¿Para aprobar Programación I es requisito conocer StarWars?":
-        respuesta = "si"
-    elif pregunta == "Para crear una carpeta desde la terminal se usa el siguiente comando: mkdir <nombreCapeta>":
-        respuesta = "si"
-    elif pregunta ==  "Los elementos de un set tienen un orden determinado":
-        respuesta = "no"
-    elif pregunta == "La amortización SOLO va en el presupuesto financiero: ":
-        respuesta = "no"
-    return respuesta
+#def evaluar_pregunta2(pregunta):
+    #if pregunta == "Siempre que una relación es 'asimétrica' también es 'no simétrica'.":
+        #respuesta = "si"
+    #elif pregunta == "Super().__init__ no son los atributos heredados de la clase padre.":
+        #respuesta = "no"
+    #elif pregunta == "¿Las listas son mutables?":
+        #respuesta = "si"
+    #elif pregunta == "¿Para aprobar Programación I es requisito conocer StarWars?":
+        #respuesta = "si"
+    #elif pregunta == "Para crear una carpeta desde la terminal se usa el siguiente comando: mkdir <nombreCapeta>":
+        #respuesta = "si"
+    #elif pregunta ==  "Los elementos de un set tienen un orden determinado":
+        #respuesta = "no"
+    #elif pregunta == "La amortización SOLO va en el presupuesto financiero: ":
+        #respuesta = "no"
+    #return respuesta
+
+def evaluar_pregunta(lista, pregunta):
+        for i in lista:
+            pregunta1 = i[0]
+            #pregunta1 = lista[i][0]
+            if pregunta1 == pregunta:
+                respuesta = i[1]
+                return respuesta
