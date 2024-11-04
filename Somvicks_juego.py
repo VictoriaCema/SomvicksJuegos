@@ -22,9 +22,9 @@ while opcion != "2":
         a = 2
         nombre = input("Empecemos por tu nombre!: ")
         jugador["nombre"] = nombre
-        print(f"\nHola {jugador["nombre"]}, esta es tu primera pregunta: \n")
+        print(f'\nHola {jugador["nombre"]}, esta es tu primera pregunta: \n')
     preguntas = len(lista_preguntas)
-    indice = random.randint(0, preguntas)
+    indice = random.randint(0, preguntas-1)
     pregunta = lista_preguntas[indice][0]
     print(pregunta)
     respuesta_usuario = input("\nRespuesta (si/no): ").lower()
