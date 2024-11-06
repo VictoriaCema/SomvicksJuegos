@@ -22,7 +22,8 @@ def mostrar_menu_inicial():
                     6. Biblioteca
                     7. Baño
                     8. Pregunta Final! 
-                    9. Salir
+                    9. Mostrar atributos
+                    10. Salir
                     """)
 
 
@@ -38,6 +39,7 @@ def chequear_vida(jugador:dict) -> bool:
         vida = True
     else:
         vida = False
+        jugador["vidas"] = 0
     return vida
 
 def evaluar_respuesta(lista, pregunta):
@@ -49,38 +51,43 @@ def evaluar_respuesta(lista, pregunta):
 
 def mostrar_atributos(jugador):
     jugador_items = list(jugador.items()) 
-    print("Estas son tus estadisticas: \n")
+    print("\nEstas son tus estadisticas: \n")
     for clave, valor in jugador_items:
         print(f"{clave} = {valor}")
 
-def elegir_destino():
+def elegir_destino()-> str:
     print("Elige tu destino, puedes tomar el camino del bien y contestar las preguntas o echar tu suerte y aceptar las consecuencias...")
-    destino = input("1 - Camino del bien 😇\n 2- Camino del mal 😈: ")
+    destino = input("1 - Camino del bien 😇\n2 - Camino del mal 😈: ")
     return destino
 
 def rendir_materia(jugador, lista, mensaje, materia):
-    destino = elegir_destino() #Esta funcion devuelve un bool
-    if destino == "1": 
+    destino_elegido = elegir_destino() 
+    if destino_elegido == "1": 
         for i in lista:
-            pregunta = [lista][i]
+            elemento = i
+            pregunta = elemento[0]
             print(pregunta)
             respuesta_usuario = input("Su respuesta: ")
             respuesta_correcta = evaluar_respuesta(lista, pregunta)
             if respuesta_usuario == respuesta_correcta:
                 jugador[materia] += 25
-                mensaje = mensaje[0]
+                mensaje1 = mensaje[0]
+                print(mensaje1)
             elif respuesta_usuario != respuesta_correcta:
                 quitar_vida(jugador)          
-                mensaje = mensaje[1]
-    elif destino == "2":
+                mensaje1 = mensaje[1]
+                print(mensaje1)
+    elif destino_elegido == "2":
         moneda = random.randint(0,100) + jugador["suerte"] 
         if moneda < 50:
             jugador["vidas"] -= round(jugador["vidas"]/2)
-            mensaje = mensaje[2]
+            mensaje1 = mensaje[2]
+            print(mensaje1)
         elif moneda > 49:
-            mensaje = mensaje[3]
+            mensaje1 = mensaje[3]
+            print(mensaje1)
             jugador[materia] += 100
-    return mensaje
+    return
 
 def buscar_en_biblioteca(jugador):
     print('''Entraste a la Biblioteca!
@@ -108,11 +115,11 @@ def comprar_buffet(jugador):
         abriste tu mercado pago y tienes ${dinero}
         ''')
     if dinero >2999:
-        print("Bien! te alcanza para un cafe y ganas una vida!")
+        print("Bien! te alcanza para un café y ganas una vida!")
         jugador["vidas"] += 1
         #pudiste comprar el cafe y sumaste vida
     else:
-        print("Se te debito Netflix y no te alcanza para un cafe. Tu suerte desciende 20 puntos.")
+        print("Se te debitó Netflix y no te alcanza para un café. Tu suerte desciende 20 puntos.")
         jugador["suerte"] -= 20
         #NO pudiste comprar el cafe perdiste suerte
 
@@ -125,10 +132,6 @@ def ingresar_banio(jugador):
     else:
         print("Estaba mojado el piso, te resbalaste y perdiste una vida")
         jugador["vidas"] -=1
-
-def mostrar_atributos(jugador):
-    print(f'''Estas son tus estadisticas: 
-        {jugador}''')
 
 def evento_random(suerte): #terminar
     if suerte == "1":
@@ -147,27 +150,41 @@ def evento_random(suerte): #terminar
         random.shuffle(lista_aleatoria)
         materia_perdida = random.randint(lista_aleatoria)
         jugador[materia_perdida] = 0
-        print(f"En ecretaria de alumnos te anotaron mal a {materia_perdida} materia, perdes tus notas.")
+        print(f"En secretaria de alumnos borraron accidentalmente tus regristros, pierdes las notas de {materia_perdida}.")
 
 def tirar_suerte():
     return random.randint(1, 10)
 
-def rendir_final(jugador):
+def rendir_final(jugador, lista):
     suma_materias = jugador["programacion"] + jugador["matematica"] + jugador["org_emp"] + jugador["arso"]
     porcentaje = (suma_materias * 100) / 400
-    if porcentaje > 69:
+    if porcentaje > 59:
         if jugador["suerte"]>30:
-            #print(pregunta_final_facil)
+            pregunta_final = lista[1][0]
+            print(pregunta_final)
             respuesta_usuario = input("Respuesta: ")
-            #evaluar_final(pregunta_final_facil, respuesta_usuario)
-            pass
+            respuesta_correcta = evaluar_respuesta(lista, pregunta_final)
+            if respuesta_usuario == respuesta_correcta:
+                print("Felicidades! Ganaste el juego!")
+                mostrar_atributos(jugador)
+            else:
+                print("Respuesta Incorrecta. Perdiste el juego")
+                jugador["vidas"] = 0
         else:
-            #print(pregunta_final_dificil)
+            pregunta_final = lista[0][0]
+            print(lista[0][0])
             respuesta_usuario = input("Respuesta: ")
-            #evaluar_final(pregunta_final_dificil, respuesta_usuario)
-            pass
+            respuesta_correcta = evaluar_respuesta(lista, pregunta_final)
+            if respuesta_usuario == respuesta_correcta:
+                print("Felicidades! Ganaste el juego!")
+                mostrar_atributos(jugador)
+            else:
+                print("Respuesta Incorrecta. Perdiste el juego")
+                jugador["vidas"] = 0
+    else:
+        print("El promedio de las notas fue menor a 60, no puedes rendir el final. Perdiste el juego.")
+        jugador["vidas"] = 0
 
-def evaluar_final(): #terminar
-    pass
-    return #respuesta_correcta
-    pass
+
+def terminar_juego():
+    print("Saliste del juego.")
