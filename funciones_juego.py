@@ -1,5 +1,5 @@
 import random
-from somvicks4 import *
+
 
 jugador = {
     "nombre" : "",
