@@ -2,25 +2,30 @@ import random
 from somvicks4 import *
 
 jugador = {
-    "nombre": "pepe",
-    "porcentaje_somvick": 0,
-    "vidas" : 3
-}
+    "nombre" : "",
+    "suerte" : 0,
+    "matematica" : 0,
+    "programacion" : 0,
+    "arso" : 0,
+    "org_emp" : 0,
+    "vidas" : 10,
+    "porcentaje_somvicks" : 0
+    }
 
 def mostrar_menu_inicial():
-    print('''
-    [¡Bienvenidos a Somvicks!]
-    
-    Para ser programador necesitás estudiar hasta convertirte en un Somvicks primero.
-    Y para ello, deberás contestar las preguntas de menera correcta. Si las contestás bien, sumás puntos; 
-    pero cuidado porque si las contestás mal perdés 1 (una) vida. 
-    
-    1 - Iniciar
-    2 - Salir
-    ''')
+    print("""Ingrese el numero del espacio al que quiere acceder. 
+                    1. Programación
+                    2. Matematica
+                    3. Organización Empresarial
+                    4. ArSo
+                    5. Buffet
+                    6. Biblioteca
+                    7. Baño
+                    8. Pregunta Final! 
+                    9. Salir
+                    """)
 
-def agregar_puntos(jugador: dict, puntaje: int):
-    jugador["porcentaje_somvicks"] += puntaje
+
 
 def quitar_vida(jugador:dict):
     jugador["vidas"] -= 1
@@ -42,6 +47,12 @@ def evaluar_respuesta(lista, pregunta):
                 respuesta = i[1]
                 return respuesta
 
+def mostrar_atributos(jugador):
+    jugador_items = list(jugador.items()) 
+    print("Estas son tus estadisticas: \n")
+    for clave, valor in jugador_items:
+        print(f"{clave} = {valor}")
+
 def elegir_destino():
     print("Elige tu destino, puedes tomar el camino del bien y contestar las preguntas o echar tu suerte y aceptar las consecuencias...")
     destino = input("1 - Camino del bien 😇\n 2- Camino del mal 😈: ")
@@ -59,7 +70,7 @@ def rendir_materia(jugador, lista, mensaje, materia):
                 jugador[materia] += 25
                 mensaje = mensaje[0]
             elif respuesta_usuario != respuesta_correcta:
-                jugador["vidas"] -= 1          
+                quitar_vida(jugador)          
                 mensaje = mensaje[1]
     elif destino == "2":
         moneda = random.randint(0,100) + jugador["suerte"] 
@@ -119,11 +130,30 @@ def mostrar_atributos(jugador):
     print(f'''Estas son tus estadisticas: 
         {jugador}''')
 
-def evento_random(): #terminar
-    pass
-    
+def evento_random(suerte): #terminar
+    if suerte == "1":
+        print("Te encontraste con tu grupo de amigos y te pasan las respuestas. Tu suerte aumenta 20 puntos")
+        jugador["suerte"] += 20
+    if suerte == "2":
+        lista_aleatoria = []
+        if jugador["programacion"] != 0:
+            lista_aleatoria.append("programacion")
+        if jugador["matematica"] != 0:
+            lista_aleatoria.append("matematica")
+        if jugador["arso"] != 0:
+            lista_aleatoria.append("arso")
+        if jugador["org_emp"] != 0:
+            lista_aleatoria.append("org_emp")
+        random.shuffle(lista_aleatoria)
+        materia_perdida = random.randint(lista_aleatoria)
+        jugador[materia_perdida] = 0
+        print(f"En ecretaria de alumnos te anotaron mal a {materia_perdida} materia, perdes tus notas.")
+
+def tirar_suerte():
+    return random.randint(1, 10)
+
 def rendir_final(jugador):
-    suma_materias = jugador["programacion"] + jugador["matemtica"] + jugador["org_emp"] + jugador["arso"]
+    suma_materias = jugador["programacion"] + jugador["matematica"] + jugador["org_emp"] + jugador["arso"]
     porcentaje = (suma_materias * 100) / 400
     if porcentaje > 69:
         if jugador["suerte"]>30:

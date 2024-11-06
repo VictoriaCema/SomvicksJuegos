@@ -1,5 +1,6 @@
 import random 
-from funciones import *
+from funciones_juego import (mostrar_menu_inicial, rendir_materia, tirar_suerte, evento_random, comprar_buffet, buscar_en_biblioteca, ingresar_banio, mostrar_atributos, elegir_destino, quitar_vida, terminar_juego, evaluar_respuesta, chequear_vida)
+
 
 '''
 #ideas:
@@ -12,27 +13,6 @@ from funciones import *
     
     hasta encontrar con un npc final 
     non playable character
-    
-    jugador = {
-        "nombre" : "",
-        "suerte" : "",
-        "matematica" : "",
-        "programacion" : "",
-        "ArSo" : "",
-        "Org. Emp" : "",
-        "vidas" : 4,
-        "porcentaje_somvicks" : ""
-    }
-
-4 lista de preguntas por materia
-
-1 - Aula prog
-2 - Aula mat
-3 - Aula org. emp
-4 - Aula Arso
-5 - Buffet
-6 - Biblioteca    
-7 - Baños
 
 funciones: 
 mostrar_pregunta(lista)
@@ -70,81 +50,92 @@ mensaje_programacion = ["Muy bien! sumaste 25 puntos a programacion", mensaje_in
 mensaje_matematica = ["Muy bien! sumaste 25 puntos a matematica", mensaje_incorrecta, "Entro un Phonte salvaje y te encontro con las manos en la masa, sacandole fotos al examen \nPerdiste la mitad de tus vidas.", "¡Felicidades! \nSacaste satisfactoriamente la foto al examen y no fuiste descubierto, diablillo" ]
 mensaje_org_emp = ["Muy bien! sumaste 25 puntos a Organizacion Empresarial", mensaje_incorrecta, "Aviso por señales de humo que el examen era virtual pero vos fuiste a la facu y te atropelló el 17.  \nPerdiste la mitad de tus vidas.","¡Felicidades! \nRenuncio el profe y sacaron la materia del plan de estudio.💖"]
 mensaje_arso = ["Muy bien! sumaste 25 puntos a arso",  mensaje_incorrecta,"Te quedaste dormido en todas las clases, quedaste libre.", "¡Felicidades! \nEl michi de la profe te reemplazo en el parcial y aprobaste" ]
-pregunta_final_dificil = "" #Vicky chiquita: pensa una pregunta recontra dificil e integradora, que sea multiplechoice con 5 respuestas posibles
-pregunta_final_facil = "" #Vicky chiquita: pensa una pregunta recontra dificil e integradora, que sea multiplechoice con 5 respuestas posibles
+preguntas_finales = ["Pregunta dificil, pregunta facíl"] #Vicky chiquita: pensa una pregunta recontra dificil e integradora, que sea multiplechoice con 5 respuestas posibles  y una muy facil, también con 5 respuetas posibles
 contador = 0
 
+
 while True: 
-    espacio = input("""Ingrese el numero del espacio al que quiere acceder. 
-                    1. Programación
-                    2. Matematica
-                    3. Organización Empresarial
-                    4. ArSo
-                    5. Buffet
-                    6. Biblioteca
-                    7. Baño
-                    8. Pregunta Final! 
-                    9. Salir
-                    """)
+    mostrar_menu_inicial()
+    espacio = input("Opcion: ")
     match espacio:
         case "1": 
             contador = 0
             if contador == 0: 
                 materia = "programacion"
-                #rendir_materia(jugador, lista_programacion, mensaje_programacion, materia)
+                rendir_materia(jugador, lista_programacion, mensaje_programacion, materia) 
                 contador += 1
             else:
                 print("Ya rendiste Programacion, elige otra aula.")
-            
+            suerte = tirar_suerte()
+            if suerte == 1 or suerte == 2:
+                evento_random(suerte)
         case "2":
             contador = 0
             if contador == 0: 
                 materia = "matematica"
-                #rendir_materia(jugador, lista_matematica, mensaje_matematica, materia)
+                rendir_materia(jugador, lista_matematica, mensaje_matematica, materia)
                 contador += 1
             else:
                 print("Ya rendiste Matematica, elige otra aula.")
-        
+            suerte = tirar_suerte()
+            if suerte == 1 or suerte == 2:
+                evento_random(suerte)
         case "3":
             contador = 0
             if contador == 0:
                 materia = "Organizacion Empresarial"
-                #rendir_materia(jugador, lista_org_emp, mensaje_org_emp, materia)
+                rendir_materia(jugador, lista_org_emp, mensaje_org_emp, materia)
                 contador += 1
             else:
                 print("Ya rendiste Organizacion Empresarial, elige otra aula.")
-        
+            suerte = tirar_suerte()
+            if suerte == 1 or suerte == 2:
+                evento_random(suerte)
         case "4":
             contador = 0
             if contador == 0: 
                 materia = "ArSo"
-                #rendir_materia(jugador, lista_arso, mensaje_arso, materia)
+                rendir_materia(jugador, lista_arso, mensaje_arso, materia)
                 contador += 1
             else:
                 print("Ya rendiste ArSo, elige otra aula.")
-        
+            suerte = tirar_suerte()
+            if suerte == 1 or suerte == 2:
+                evento_random(suerte)
         case "5":
             contador = 0
             if contador == 0:
                 comprar_buffet(jugador)
             else:
                 print("Ya entraste al Buffet, elige otro espacio.")
-                
+            suerte = tirar_suerte()
+            if suerte == 1 or suerte == 2:
+                evento_random(suerte)
         case "6":
             contador = 0
             if contador == 0:
                 buscar_en_biblioteca(jugador)
             else:
                 print("Ya entraste a la biblioteca, elige otro espacio.")
+            suerte = tirar_suerte()
+            if suerte == 1 or suerte == 2:
+                evento_random(suerte)
         case "7":
             contador = 0
             if contador == 0:
                 ingresar_banio(jugador)
+            suerte = tirar_suerte()
+            if suerte == 1 or suerte == 2:
+                evento_random(suerte)
         case "8":
             pass
+            #8. Pregunta Final!
+            
         
+        case "9":
+            #mostrar atributos/estadísticas
+            mostrar_atributos(jugador)
         case _:
             print("Opcion invalida, ingrese nuevamente")
             
 
-            
