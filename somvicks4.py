@@ -1,31 +1,6 @@
 import random 
-from funciones_juego import (mostrar_menu_inicial, rendir_materia, tirar_suerte, evento_random, comprar_buffet, buscar_en_biblioteca, ingresar_banio, mostrar_atributos, elegir_destino, quitar_vida, terminar_juego, evaluar_respuesta, chequear_vida, rendir_final)
+from funciones_juego import (mostrar_menu_inicial, rendir_materia, tirar_suerte, evento_random, comprar_buffet, buscar_en_biblioteca, ingresar_banio, mostrar_atributos, elegir_destino, quitar_vida, terminar_juego, evaluar_respuesta, chequear_vida, rendir_final, explicar_juego)
 
-
-'''
-#ideas:
-    que el jugador vaya entrando a aulas, donde se encuente con dos opciones, un machete o contestar una pregunta. 
-    Si se elige el machete que exista la posibilidad (50%) de que entre el prof y te haga recursar la materia.
-    
-    1 jugador 
-    objetivo: convertirse en Somvicks
-    como: contestando bien las preguntas hasta llegar a 60%
-    
-
-funciones: 
-mostrar_pregunta(lista)
-elegir_lugar()
-elegir_tudestino() ---> elegir camino del bien o camino del mal
-jugar()
-quitar_vida()
-agregar_vida()
-aumentar_suerte() ---> cuando en biblioteca elegis estudiar (reducir vida) / baño / buffet
-disminuir_suerte() --> cuando decis dormir (pero aumenta tu vida) / baño
-mostrar_estadisticas()
-[evento random que pase aleatoriamente yendo de un aula a otra]
-[que se pueda entrar una sola vez a cada espacio]
-
-'''
 jugador = {
     "nombre" : "",
     "suerte" : 0,
@@ -37,12 +12,10 @@ jugador = {
     "porcentaje_somvicks" : 0
     }
 
-
-
 lista_programacion = [["Super().__init__ no son los atributos heredados de la clase padre.", "no"], ["¿Las listas son mutables?", "si"], ["¿Para aprobar Programación I es requisito conocer StarWars?", "si"],["Los elementos de un set tienen un orden determinado", "no"]]
-lista_matematica = [["Siempre que una relación es 'asimétrica' también es 'no simétrica'.", "si"], ] #Vicky chiquita, por favor agrega 3 preguntas mas como sublistas, con sus respuestas. Estas preguntas son de respuesta "si o no".
-lista_org_emp = [["La amortización SOLO va en el presupuesto financiero: ", "no"]] #Vicky, Idem arriba
-lista_arso = [["Para crear una carpeta desde la terminal se usa el siguiente comando: mkdir <nombreCapeta>", "si"], ] #Vicky idem arriba
+lista_matematica = [["Siempre que una relación es 'asimétrica' también es 'no simétrica'.", "si"], [ "Si V( p->q) = 0. El valor de verdad de la sig. proposición -( p ^ q) -> q = 1", "no"], ["Si el conjunto A está incluido en el conjunto B, la diferencia simetrica de A y B es = B-A"],["si"],["Para que dos matrices puedan multiplicarse, las filas de la primera y las columnas de la segunda tienen que ser iguales","no"]] 
+lista_org_emp = [["La amortización SOLO va en el presupuesto financiero: ", "no"],["Las SAS son completamente digitales", "si"], ["Los dividendos pagados se suman al resultado del patrimonio neto.","no"], ["Los intereses ganados en inversiones se incluyen en ingresos extraordinarios","si"]] 
+lista_arso = [["Para crear una carpeta desde la terminal se usa el siguiente comando: mkdir <nombreCapeta>", "si"], ["Con el comando ls -l veo el contenido de un archivo.","no"], ["Para modificar un archivo se usa el comando vim","si"], ["El comando 'vagrant up' enciende la maquina virtual y nos inicia sesion dentro de ella","no"] ] 
 
 mensaje_incorrecta = "Respuesta incorrecta, pierdes una vida"
 
@@ -50,7 +23,7 @@ mensaje_programacion = ["Muy bien! sumaste 25 puntos a programación", mensaje_i
 mensaje_matematica = ["Muy bien! sumaste 25 puntos a matemática", mensaje_incorrecta, "Entro un Phonte salvaje y te encontró con las manos en la masa, sacándole fotos al examen \nPerdiste la mitad de tus vidas.", "¡Felicidades! \nSacaste satisfactoriamente la foto al examen y no fuiste descubierto, diablillo" ]
 mensaje_org_emp = ["Muy bien! sumaste 25 puntos a Organización Empresarial", mensaje_incorrecta, "El profe visó por señales de humo que el examen era virtual pero vos fuiste a la facu y te atropelló el 17.  \nPerdiste la mitad de tus vidas.","¡Felicidades! \nRenunció el profe y sacaron la materia del plan de estudio.💖"]
 mensaje_arso = ["Muy bien! sumaste 25 puntos a arso",  mensaje_incorrecta,"Te quedaste dormido en todas las clases, quedaste libre.", "¡Felicidades! \nLa michi de la profe te reemplazó en el parcial y aprobaste" ]
-preguntas_finales = [["Pregunta difícil", "respuesta"], ["pregunta fácil", "respuesta"]] #Vicky chiquita: pensa una pregunta recontra dificil e integradora, que sea multiplechoice con 5 respuestas posibles  y una muy facil, también con 5 respuetas posibles
+preguntas_finales = [["En el paradigma funcional es posible que una función retorne otra función comoresultado", "si"], ["En un diccionario pueden existir claves duplicadas.", "no"]]
 
 contador_p = 0
 contador_m = 0
@@ -61,6 +34,10 @@ contador_ba = 0
 contador_bu = 0
 contador_final = 0
 espacio = 1
+
+explicar_juego()
+jugador["nombre"] = input("Empecemos por tu nombre: ")
+print(f"Hola {jugador["nombre"]}! mucha suerte!\n")
 while espacio != "10": 
     mostrar_menu_inicial()
     espacio = input("Opción: ")

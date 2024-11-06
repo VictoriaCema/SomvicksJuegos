@@ -13,19 +13,25 @@ jugador = {
     }
 
 def mostrar_menu_inicial():
-    print("""Ingrese el numero del espacio al que quiere acceder. 
-                    1. Programación
-                    2. Matematica
-                    3. Organización Empresarial
-                    4. ArSo
-                    5. Buffet
-                    6. Biblioteca
-                    7. Baño
-                    8. Pregunta Final! 
-                    9. Mostrar atributos
-                    10. Salir
-                    """)
+    print("""
+    Ingrese el numero del espacio al que quiere acceder. 
+        1. Programación
+        2. Matematica
+        3. Organización Empresarial
+        4. ArSo
+        5. Buffet
+        6. Biblioteca
+        7. Baño
+        8. Pregunta Final! 
+        9. Mostrar atributos
+        10. Salir                """)
 
+def explicar_juego():
+    print('''
+        [Bienvenido a Somvicks]
+    El objetivo del juego es que te conviertas en un Somvicks después de haber estudiado mucho y aprobado todas las materias! 
+    Podés ingresar una sola vez a cada espacio. Las aulas contienen 4 preguntas que deberás contestar. Pero antes puedes elegir el camino del bien, y contestar las preguntas, o echar suerte en el camino del mal, donde puede irte muy bien o muy mal. Es importante que cuides tus vidas y tu puntaje de suerte porque te servirán para rendir el final. Hay otros espacios que pueden o no traerte suerte.
+    A la pregunta final solo tendras acceso si el promedio de la suma de los puntos de todas las materias es mayor a 60. Y dependiendo de los puntos de suerte que tengas tendrás mas o menos chance de contestar una pregunta muy difícil o muy fácil.''')
 
 
 def quitar_vida(jugador:dict):
@@ -153,7 +159,7 @@ def evento_random(suerte): #terminar
         print(f"En secretaria de alumnos borraron accidentalmente tus regristros, pierdes las notas de {materia_perdida}.")
 
 def tirar_suerte():
-    return random.randint(1, 10)
+    return random.randint(1, 6)
 
 def rendir_final(jugador, lista):
     suma_materias = jugador["programacion"] + jugador["matematica"] + jugador["org_emp"] + jugador["arso"]
