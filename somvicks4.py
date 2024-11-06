@@ -9,10 +9,8 @@ from funciones_juego import (mostrar_menu_inicial, rendir_materia, tirar_suerte,
     
     1 jugador 
     objetivo: convertirse en Somvicks
-    como: contestando bien las preguntas hasta llegar a 70%
+    como: contestando bien las preguntas hasta llegar a 60%
     
-    hasta encontrar con un npc final 
-    non playable character
 
 funciones: 
 mostrar_pregunta(lista)
