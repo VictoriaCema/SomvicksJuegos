@@ -35,6 +35,17 @@ contador_bu = 0
 contador_final = 0
 espacio = 1
 
+
+lista_espacios = ["programacion", "matematica", "org_emp", "arso", "buffet", "biblioteca", "banio"]
+
+def validar_entrada(lista, espacio):
+    if espacio not in lista:
+        print("Ya entraste a este espacio, elige otro.")
+        entrar = "no"
+    else:
+        entrar = "si"
+        return entrar
+
 explicar_juego()
 jugador["nombre"] = input("Empecemos por tu nombre: ")
 print(f"Hola {jugador["nombre"]}! mucha suerte!\n")
@@ -43,13 +54,12 @@ while espacio != "10":
     espacio = input("Opción: ")
     match espacio:
         case "1": 
-            if contador_p == 0: 
-                materia = "programacion"
+            materia = "programacion"
+            puede_rendir = validar_entrada(lista_espacios, materia)
+            if puede_rendir == "si":
+                lista_espacios.pop(0)
                 rendir_materia(jugador, lista_programacion, mensaje_programacion, materia) 
-                contador_p = 1
                 contador_final += 1
-            else:
-                print("Ya rendiste Programación, elige otra aula.")
             suerte = tirar_suerte()
             if suerte == 1 or suerte == 2:
                 evento_random(suerte)
@@ -59,13 +69,12 @@ while espacio != "10":
                 espacio = "10"
                 terminar_juego()
         case "2":
-            if contador_m == 0: 
-                materia = "matematica"
+            materia = "matematica"
+            puede_rendir = validar_entrada(lista_espacios, materia)
+            if puede_rendir == "si": 
+                lista_espacios.pop(1)
                 rendir_materia(jugador, lista_matematica, mensaje_matematica, materia)
-                contador_m = 1
                 contador_final += 1
-            else:
-                print("Ya rendiste Matemática, elige otra aula.")
             suerte = tirar_suerte()
             if suerte == 1 or suerte == 2:
                 evento_random(suerte)
@@ -75,13 +84,12 @@ while espacio != "10":
                 espacio = "10"
                 terminar_juego()
         case "3":
-            if contador_o == 0:
-                materia = "org_emp"
+            materia = "org_emp"
+            puede_rendir = validar_entrada(lista_espacios, materia)
+            if puede_rendir == "si":
+                lista_espacios.pop(2)
                 rendir_materia(jugador, lista_org_emp, mensaje_org_emp, materia)
-                contador_o = 1
                 contador_final += 1
-            else:
-                print("Ya rendiste Organización Empresarial, elige otra aula.")
             suerte = tirar_suerte()
             if suerte == 1 or suerte == 2:
                 evento_random(suerte)
@@ -91,13 +99,12 @@ while espacio != "10":
                 espacio = "10"
                 terminar_juego()
         case "4":
-            if contador_a == 0: 
-                materia = "arso"
+            materia = "arso"
+            puede_rendir = validar_entrada(lista_espacios, materia)
+            if puede_rendir == "si":
+                lista_espacios.pop(3)
                 rendir_materia(jugador, lista_arso, mensaje_arso, materia)
-                contador_a = 1
                 contador_final += 1
-            else:
-                print("Ya rendiste ArSo, elige otra aula.")
             suerte = tirar_suerte()
             if suerte == 1 or suerte == 2:
                 evento_random(suerte)
@@ -107,12 +114,12 @@ while espacio != "10":
                 espacio = "10"
                 terminar_juego()
         case "5":
-            if contador_bu == 0:
+            lugar = "buffet"
+            puede_rendir = validar_entrada(lista_espacios, lugar) 
+            if puede_rendir == "si":
+                lista_espacios.pop(4)
                 comprar_buffet(jugador)
-                contador_bu = 1
                 contador_final += 1
-            else:
-                print("Ya entraste al Buffet, elige otro espacio.")
             suerte = tirar_suerte()
             if suerte == 1 or suerte == 2:
                 evento_random(suerte)
@@ -122,12 +129,12 @@ while espacio != "10":
                 espacio = "10"
                 terminar_juego()
         case "6":
-            if contador_bi == 0:
+            lugar = "biblioteca"
+            puede_rendir = validar_entrada(lista_espacios, lugar)
+            if puede_rendir == "si":
+                lista_espacios.pop(5)
                 buscar_en_biblioteca(jugador)
-                contador_bi = 1
                 contador_final += 1
-            else:
-                print("Ya entraste a la biblioteca, elige otro espacio.")
             suerte = tirar_suerte()
             if suerte == 1 or suerte == 2:
                 evento_random(suerte)
@@ -137,14 +144,12 @@ while espacio != "10":
                 espacio = "10"
                 terminar_juego()
         case "7":
-            if contador_ba == 0:
+            lugar = "banio"
+            puede_rendir = validar_entrada(lista_espacios, lugar)
+            if puede_rendir == "si":
+                lista_espacios.pop(6)
                 ingresar_banio(jugador)
-                contador_ba = 1
                 contador_final += 1
-            else:
-                print("Ya entraste al baño, elige otro espacio.")
-                
-            suerte = tirar_suerte()
             suerte = tirar_suerte()
             if suerte == 1 or suerte == 2:
                 evento_random(suerte)

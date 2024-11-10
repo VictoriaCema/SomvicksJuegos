@@ -1,22 +1,19 @@
 import random
 
-jugador = {
-    "nombre" : "Osom",
-    "suerte" : 0,
-    "matematica" : 0,
-    "programacion" : 0,
-    "arso" : 0,
-    "org_emp" : 0,
-    "vidas" : 10,
-    "porcentaje_somvicks" : 0
-    }
+lista_espacios = ["programacion", "matematica", "arso", "org_emp", "buffete", "biblioteca", "banio"]
 
-def tirar_suerte():
-    return random.randint(1, 10)
+def validar_entrada(lista, espacio):
+    if espacio not in lista:
+        print("Ya entraste a este espacio, elige otro.")
+        entrar = "no"
+    else:
+        entrar = "si"
+        return entrar
 
+materia = "programacion"
+puede_rendir = validar_entrada(lista_espacios, materia)
 
-print(tirar_suerte())
-
+print(puede_rendir)
 
 
 
