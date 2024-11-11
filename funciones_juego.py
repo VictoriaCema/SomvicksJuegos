@@ -31,8 +31,15 @@ def explicar_juego():
         [Bienvenido a Somvicks]
     El objetivo del juego es que te conviertas en un Somvicks después de haber estudiado mucho y aprobado todas las materias! 
     Podés ingresar una sola vez a cada espacio. Las aulas contienen 4 preguntas que deberás contestar. Pero antes puedes elegir el camino del bien, y contestar las preguntas, o echar suerte en el camino del mal, donde puede irte muy bien o muy mal. Es importante que cuides tus vidas y tu puntaje de suerte porque te servirán para rendir el final. Hay otros espacios que pueden o no traerte suerte.
-    A la pregunta final solo tendras acceso si el promedio de la suma de los puntos de todas las materias es mayor a 60. Y dependiendo de los puntos de suerte que tengas tendrás mas o menos chance de contestar una pregunta muy difícil o muy fácil.''')
+    A la pregunta final solo tendras acceso si el promedio de la suma de los puntos de todas las materias es mayor a 60. Y dependiendo de los puntos de suerte que tengas tendrás mas o menos chance de contestar una pregunta muy difícil o una muy fácil.''')
 
+def validar_entrada(lista, espacio):
+    if espacio not in lista:
+        print("Ya entraste a este espacio, elige otro.")
+        entrar = "no"
+    else:
+        entrar = "si"
+    return entrar
 
 def quitar_vida(jugador:dict):
     jugador["vidas"] -= 1
@@ -155,8 +162,8 @@ def evento_random(suerte): #terminar
             lista_aleatoria.append("org_emp")
         random.shuffle(lista_aleatoria)
         materia_perdida = random.randint(lista_aleatoria)
-        jugador[materia_perdida] = 0
-        print(f"En secretaria de alumnos borraron accidentalmente tus regristros, pierdes las notas de {materia_perdida}.")
+        jugador[materia_perdida] = round(jugador[materia_perdida] / 2)
+        print(f"En secretaria de alumnos se mezclaron accideltamente tus regristros, pierdes la mitad de la nota de {materia_perdida}.")
 
 def tirar_suerte():
     return random.randint(1, 6)
