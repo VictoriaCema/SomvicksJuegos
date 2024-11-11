@@ -10,7 +10,6 @@ jugador = {
     "arso" : 0,
     "org_emp" : 0,
     "vidas" : 10,
-    "porcentaje_somvicks" : 0
     }
 
 contador_final = 0

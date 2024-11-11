@@ -178,7 +178,7 @@ def rendir_final(jugador, lista):
             respuesta_usuario = input("Respuesta: ")
             respuesta_correcta = evaluar_respuesta(lista, pregunta_final)
             if respuesta_usuario == respuesta_correcta:
-                print("Felicidades! Ganaste el juego!")
+                print("Felicidades! Te convertiste en Somvicks y ganaste el juego!")
                 mostrar_atributos(jugador)
             else:
                 print("Respuesta Incorrecta. Perdiste el juego")
